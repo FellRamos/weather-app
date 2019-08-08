@@ -1,11 +1,13 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs') // We don't need to load for views only..
+const chalk = require('chalk');
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 // Initializing express
 const app = express()
+const port = process.env.PORT || 3000;
 
 // Defining Paths for Express Config!
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -102,6 +104,6 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Server running')
+app.listen(port, () => {
+    console.log(chalk.green.bold('Server running on port ' + port))
 })
